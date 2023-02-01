@@ -1,4 +1,4 @@
-const {products,users} = require("../models");
+const { products, users } = require("../models");
 const { Op } = require("@sequelize/core");
 
 class productService {
@@ -29,6 +29,23 @@ class productService {
     } catch (error) {
       throw error;
     }
+  }
+
+  static updateQty(productsArray) {
+    productsArray.forEach(async (product) => {
+      const { id, available_qty } = await products.findByPk(product.product_id);
+      const newQty = available_qty - product.quantity;
+      let status = true;
+      if (newQty <= 0) {
+        status = false;
+      }
+      await products.update(
+        { available_qty: newQty,
+        status:status },
+        { where: { id: id } }
+      )
+    });
+    return true
   }
 }
 

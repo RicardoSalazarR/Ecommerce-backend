@@ -40,12 +40,3 @@ class AuthServices {
 }
 
 module.exports = AuthServices;
-
-// const jwt = require("jsonwebtoken");
-// const authMiddleware = (req, res, next) => {
-//   let { authorization: token } = req.headers;
-//   token = token.replace("Bearer ", "");
-//   console.log(token);
-  
-// };
-// module.exports = authMiddleware;
