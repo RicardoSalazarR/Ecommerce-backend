@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  return productInOrder.init(sequelize, DataTypes);
+  return products_in_cart.init(sequelize, DataTypes);
 }
 
-class productInOrder extends Sequelize.Model {
+class products_in_cart extends Sequelize.Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -13,15 +13,15 @@ class productInOrder extends Sequelize.Model {
       allowNull: false,
       primaryKey: true
     },
-    orderId: {
+    cart_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'order',
+        model: 'cart',
         key: 'id'
       }
     },
-    productId: {
+    product_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -36,20 +36,15 @@ class productInOrder extends Sequelize.Model {
     price: {
       type: DataTypes.DOUBLE,
       allowNull: false
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: true
     }
   }, {
     sequelize,
-    tableName: 'productInOrder',
+    tableName: 'products_in_cart',
     schema: 'public',
     timestamps: false,
     indexes: [
       {
-        name: "productInOrder_pkey",
+        name: "products_in_cart_pkey",
         unique: true,
         fields: [
           { name: "id" },

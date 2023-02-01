@@ -1,13 +1,12 @@
-const models = require("../models");
+const {products,users} = require("../models");
 const { Op } = require("@sequelize/core");
-const { products, users } = models;
 
 class productService {
   static async get() {
     try {
       const result = await products.findAll({
         where: {
-          availableQty: {
+          available_qty: {
             [Op.gt]: 0,
           },
         },

@@ -3,4 +3,14 @@ const initModels = require("./init-models");
 
 const models = initModels(db);
 
-module.exports = models;
+const { cart, order, products, products_in_cart, products_in_order, users } =
+  models;
+
+module.exports = {
+  cart,
+  order,
+  products,
+  products_in_cart,
+  products_in_order,
+  users,
+};

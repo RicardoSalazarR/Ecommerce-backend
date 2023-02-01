@@ -13,7 +13,7 @@ const getProducts = async (req, res) => {
 const postProduct = async (req, res) => {
   try {
     const product = req.body;
-    product.userId = req.userId;
+    product.user_id = req.userId;
 
     const result = await productsService.create(product);
     if (result) {

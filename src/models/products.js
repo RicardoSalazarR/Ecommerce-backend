@@ -3,62 +3,62 @@ module.exports = (sequelize, DataTypes) => {
   return products.init(sequelize, DataTypes);
 }
 
-
 /**
- * @openapi
- * components:
- *   schemas:
- *     getProducts:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           example: 1
- *         name:
- *           type: string
- *           example: product_name
- *         price:
- *           type: integer
- *           example: 10000
- *         availableQty:
- *           type: int
- *           example: 11
- *         status:
- *           type: boolean
- *           example: true
- *         image:
- *           type: string
- *           example: url image
- *         userId:
- *           type: integer
- *           example: 1
- *         user:
- *           type: object
- *           properties:
- *             username:
- *               type: string
- *               example: username
- *     postProduct:
- *       type: object
- *       properties:
- *         name:
- *           type: string
- *           example: product_name
- *         price:
- *           type: integer
- *           example: 10000
- *         availableQty:
- *           type: int
- *           example: 11
- *         image:
- *           type: string
- *           example: image url
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
- */
+* @openapi
+* components:
+*   schemas:
+*     getProducts:
+*       type: object
+*       properties:
+*         id:
+*           type: integer
+*           example: 1
+*         name:
+*           type: string
+*           example: product_name
+*         price:
+*           type: integer
+*           example: 10000
+*         available_qty:
+*           type: int
+*           example: 11
+*         status:
+*           type: boolean
+*           example: true
+*         image:
+*           type: string
+*           example: url image
+*         userId:
+*           type: integer
+*           example: 1
+*         user:
+*           type: object
+*           properties:
+*             username:
+*               type: string
+*               example: username
+*     postProduct:
+*       type: object
+*       properties:
+*         name:
+*           type: string
+*           example: product_name
+*         price:
+*           type: integer
+*           example: 10000
+*         available_qty:
+*           type: int
+*           example: 11
+*         image:
+*           type: string
+*           example: image url
+*   securitySchemes:
+*     bearerAuth:
+*       type: http
+*       scheme: bearer
+*       bearerFormat: JWT
+*/
+
 
 class products extends Sequelize.Model {
   static init(sequelize, DataTypes) {
@@ -79,7 +79,7 @@ class products extends Sequelize.Model {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    availableQty: {
+    available_qty: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -92,7 +92,7 @@ class products extends Sequelize.Model {
       type: DataTypes.STRING,
       allowNull: false
     },
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

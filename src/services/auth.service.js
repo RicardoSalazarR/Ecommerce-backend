@@ -1,9 +1,7 @@
-const models = require("../models");
+const {users} = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-
-const { users } = models;
 
 class AuthServices {
   static async register(user) {
@@ -23,7 +21,7 @@ class AuthServices {
         const isValid = bcrypt.compareSync(password, user.password);
         return isValid ? { isValid, user } : { isValid, error: "password" };
       }
-      return { isValid: false, error: "emmail" };
+      return { isValid: false, error: "email" };
     } catch (error) {
       throw error;
     }

@@ -1,8 +1,7 @@
-const models = require("../models");
-const { order, productInOrder } = models;
+const {order, products_in_order} = require("../models");
 
 class orderService {
-  static async buyCart(data) {
+  static async createOrder(data) {
     try {
       const result = await order.create(data);
       return result;
@@ -16,7 +15,7 @@ class orderService {
       let productAdded = "";
       let allGod = true;
       products.forEach(async (product) => {
-        productAdded = await productInOrder.create(product);
+        productAdded = await products_in_order.create(product);
         if (!productAdded) {
           !allGod;
         }
@@ -31,11 +30,11 @@ class orderService {
   static async getOrders(userId) {
     try {
       const result = order.findAll({
-        where: { userId },
+        where: { user_id:userId },
         include: {
-          model: productInOrder,
+          model: products_in_order,
           as: "productsInOrder",
-          attributes: ["productId", "quantity", "price", "status"],
+          attributes: ["product_id", "quantity", "price", "purchased"],
         },
       });
       return result;
@@ -46,7 +45,7 @@ class orderService {
 
   static async purchase(id) {
     try {
-      const result = await order.update({ status: true }, { where: { id } });
+      const result = await order.update({ purchased: true }, { where: { id } });
       return result;
     } catch (error) {
       throw error;

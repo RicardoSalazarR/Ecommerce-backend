@@ -4,46 +4,47 @@ module.exports = (sequelize, DataTypes) => {
 }
 
 /**
- * @openapi
- * components:
- *   schemas:
- *     getOrder:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
- *           example: 1
- *         totalPrice:
- *           type: integer
- *           example: 10000
- *         userId:
- *           type: integer
- *           example: 1
- *         status:
- *           type: boolean
- *           example: true
- *         ProductsInOrder:
- *           type: object
- *           properties:
- *             productId:
- *               type: integer
- *               example: 1
- *             quantity:
- *               type: integer
- *               example: 1
- *             price:
- *               type: integer
- *               example: 10000
- *             status:
- *               type: boolean
- *               example: true
- *     purchaseOrder:
- *       type: object
- *       properties:
- *         orderId:
- *           type: integer
- *           example: 1
- */
+* @openapi
+* components:
+*   schemas:
+*     getOrder:
+*       type: object
+*       properties:
+*         id:
+*           type: integer
+*           example: 1
+*         totalPrice:
+*           type: integer
+*           example: 10000
+*         userId:
+*           type: integer
+*           example: 1
+*         status:
+*           type: boolean
+*           example: true
+*         ProductsInOrder:
+*           type: object
+*           properties:
+*             productId:
+*               type: integer
+*               example: 1
+*             quantity:
+*               type: integer
+*               example: 1
+*             price:
+*               type: integer
+*               example: 10000
+*             status:
+*               type: boolean
+*               example: true
+*     purchaseOrder:
+*       type: object
+*       properties:
+*         orderId:
+*           type: integer
+*           example: 1
+*/
+
 
 class order extends Sequelize.Model {
   static init(sequelize, DataTypes) {
@@ -59,7 +60,7 @@ class order extends Sequelize.Model {
       type: DataTypes.DOUBLE,
       allowNull: false
     },
-    userId: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -67,10 +68,10 @@ class order extends Sequelize.Model {
         key: 'id'
       }
     },
-    status: {
+    purchased: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
-      defaultValue: true
+      defaultValue: false
     }
   }, {
     sequelize,

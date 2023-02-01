@@ -1,10 +1,13 @@
-const { cart } = require("../models");
-const models = require("../models");
+const {
+  cart,
+  products_in_cart: productsInCart,
+  products,
+} = require("../models");
 
 class cartService {
   static async createCart(userId) {
     try {
-      const result = models.cart.create({ userId, totalPrice: 0 });
+      const result = cart.create({ user_id: userId, totalPrice: 0 });
       return result;
     } catch (error) {
       throw error;
@@ -13,7 +16,7 @@ class cartService {
 
   static async getDataCart(userId) {
     try {
-      const result = await models.cart.findOne({ where: { userId } });
+      const result = await cart.findOne({ where: { user_id: userId } });
       return result.dataValues;
     } catch (error) {
       throw error;
@@ -21,21 +24,20 @@ class cartService {
   }
 
   static async addProduct(cartId, productId, quantity, totalPrice) {
-    const product = await models.products.findOne({
+    const product = await products.findOne({
       where: { id: productId },
     });
     const data = {
-      cartId,
-      productId,
+      cart_id: cartId,
+      product_id: productId,
       quantity,
       price: product.dataValues.price,
-      status: product.dataValues.status,
     };
-    if (product.dataValues.availableQty >= data.quantity) {
-      const added = await models.productInCart.create(data);
+    if (product.dataValues.available_qty >= data.quantity) {
+      const added = await productsInCart.create(data);
       if (added) {
         totalPrice += data.quantity * data.price;
-        const update = await models.cart.update(
+        const update = await cart.update(
           { totalPrice: totalPrice },
           { where: { id: cartId } }
         );
@@ -48,12 +50,12 @@ class cartService {
 
   static async getCart(id) {
     try {
-      const result = await models.cart.findOne({
-        where: { userId: id },
+      const result = await cart.findOne({
+        where: { user_id: id },
         include: {
-          model: models.productInCart,
-          as: "productInCarts",
-          attributes: ["productId", "quantity", "price", "status"],
+          model: productsInCart,
+          as: "productsInCart",
+          attributes: ["product_id", "quantity", "price"],
         },
       });
       return result;
@@ -64,10 +66,10 @@ class cartService {
 
   static async emptyCart(cartId) {
     try {
-      const result = await models.productInCart.destroy({
-        where: { cartId },
+      const result = await productsInCart.destroy({
+        where: { cart_id: cartId },
       });
-      await models.cart.update(
+      await cart.update(
         { totalPrice: 0 },
         {
           where: { id: cartId },

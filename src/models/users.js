@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
-const bcrypt = require("bcrypt");
 module.exports = (sequelize, DataTypes) => {
   return users.init(sequelize, DataTypes);
 };
+const bcrypt = require("bcrypt");
 
 /**
  * @openapi

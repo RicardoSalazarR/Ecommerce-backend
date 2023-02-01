@@ -6,21 +6,22 @@ const postOrder = async (req, res, next) => {
   try {
     const { userId } = req;
     const {
-      productInCarts,
+      productsInCart,
       id: cartId,
       totalPrice,
     } = await cartService.getCart(userId);
+
     const products = [];
-    const dataCart = { userId, totalPrice };
-    if (productInCarts.length > 0) {
-      const order = await orderService.buyCart(dataCart);
-      productInCarts.forEach((product) => {
-        product.dataValues.orderId = order.dataValues.id;
+    const dataCart = { user_id:userId, totalPrice };
+    if (productsInCart.length > 0) {
+      const order = await orderService.createOrder(dataCart);
+      productsInCart.forEach((product) => {
+        product.dataValues.order_id = order.dataValues.id;
         products.push(product.dataValues);
       });
       const allGood = orderService.addProductInOrder(products);
       if (allGood) {
-        const empty = await cartService.emptyCart(cartId);
+        await cartService.emptyCart(cartId);
         res.status(200).json({ message: "Cart buyed successfull" });
       } else {
         next({ message: "nothing is good" });
