@@ -80,7 +80,7 @@ const router = Router();
  *               properties:
  *                 message:
  *                   type: string
- *                   example: order purchased succesfull
+ *                   example: Your order was successfully purchased
  *       400:
  *         description: error
  *         content:

@@ -63,7 +63,7 @@ const purchaseOrder = async (req, res, next) => {
           from: "axel.111yo@gmail.com",
           to: req.userEmail,
           subject: "Purchased",
-          html: "<h1>Order purchased</h1> <p>order purchased succesfull</p>",
+          html: "<h1>Order purchased</h1> <p>Your order was successfully purchased</p>",
         });
         res.status(200).json({ message: "Your order was successfully purchased" });
       } else {
