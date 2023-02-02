@@ -15,7 +15,7 @@ const router = Router();
  *     summary: see all the orders of a user
  *     tags: [Order]
  *     responses:
- *       201:
+ *       200:
  *         description: Ok
  *         content:
  *           application/json:
@@ -37,7 +37,7 @@ const router = Router();
  *     summary: move all the products in the cart to a new order
  *     tags: [Order]
  *     responses:
- *       200:
+ *       201:
  *         description: order created
  *         content:
  *           application/json:

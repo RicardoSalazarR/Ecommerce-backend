@@ -14,7 +14,7 @@ const router = Router();
  *     summary: Get all the  products in the cart
  *     tags: [Cart]
  *     responses:
- *       201:
+ *       200:
  *         description: Ok
  *         content:
  *           application/json:
@@ -43,7 +43,7 @@ const router = Router();
  *           schema:
  *             $ref: '#/components/schemas/addCart'
  *     responses:
- *       200:
+ *       201:
  *         description: Product created
  *         content:
  *           application/json:

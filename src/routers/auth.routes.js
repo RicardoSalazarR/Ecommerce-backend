@@ -50,7 +50,7 @@ const router = Router();
  *           schema:
  *             $ref: '#/components/schemas/login'
  *     responses:
- *       200:
+ *       201:
  *         description: ok
  *         content:
  *           application/json:
