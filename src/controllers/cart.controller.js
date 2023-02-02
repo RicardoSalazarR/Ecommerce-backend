@@ -33,7 +33,7 @@ const getCart = async (req, res, next) => {
     if (result) {
       res.status(200).json(result);
     } else {
-      next({ message: "error" });
+      next({ message: "something went wrong" });
     }
   } catch (error) {
     next(error);

@@ -32,18 +32,12 @@ const bcrypt = require("bcrypt");
  *     loginresponse:
  *       type: object
  *       properties:
- *         firstname:
- *           type: string
- *           example: Ricardo
- *         lastname:
- *           type: string
- *           example: Salazar
- *         usernme:
- *           type: string
- *           example: ricardosalazar
  *         id:
  *           type: int
  *           example: 1
+ *         username:
+ *           type: string
+ *           example: ricardoSalazar
  *         email:
  *           type: string
  *           example: axel.111yo@gmail.com

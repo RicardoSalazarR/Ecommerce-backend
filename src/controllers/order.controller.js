@@ -24,12 +24,12 @@ const postOrder = async (req, res, next) => {
       const allGood = orderService.addProductInOrder(products);
       if (allGood) {
         await cartService.emptyCart(cartId);
-        res.status(200).json({ message: "Order created successfull" });
+        res.status(200).json({ message: "Order created" });
       } else {
-        next({ message: "nothing is good" });
+        next({ message: "something went wrong" });
       }
     } else {
-      next({ message: "There aren´t any products in the cart" });
+      next({ message: "There aren´t products in the cart" });
     }
   } catch (error) {
     next(error);
@@ -43,7 +43,7 @@ const getOrders = async (req, res, next) => {
     if (orders) {
       res.status(200).json(orders);
     } else {
-      next({ message: "try later" });
+      next({ message: "something went wrong" });
     }
   } catch (error) {
     next(error);
@@ -65,7 +65,7 @@ const purchaseOrder = async (req, res, next) => {
           subject: "Purchased",
           html: "<h1>Order purchased</h1> <p>order purchased succesfull</p>",
         });
-        res.status(200).json({ message: "Your order was purchased succesful" });
+        res.status(200).json({ message: "Your order was successfully purchased" });
       } else {
         next({ message: "something went wrong" });
       }

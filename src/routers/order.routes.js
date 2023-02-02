@@ -22,7 +22,7 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/getOrder'
  *       400:
- *         description: validation error
+ *         description: error
  *         content:
  *           application/json:
  *             schema:
@@ -30,7 +30,7 @@ const router = Router();
  *               properties:
  *                 message:
  *                   type: string
- *                   example: validation error
+ *                   example: something went wrong
  *   post:
  *     security:
  *       - bearerAuth: []
@@ -56,7 +56,7 @@ const router = Router();
  *               properties:
  *                 message:
  *                   type: string
- *                   example: There aren´t any products in the cart
+ *                   example: There aren´t products in the cart
  * /api/v1/order/purchase:
  *   put:
  *     security:
@@ -82,7 +82,7 @@ const router = Router();
  *                   type: string
  *                   example: order purchased succesfull
  *       400:
- *         description: validation error
+ *         description: error
  *         content:
  *           application/json:
  *             schema:
@@ -90,7 +90,7 @@ const router = Router();
  *               properties:
  *                 message:
  *                   type: string
- *                   example: validation error
+ *                   example: something went wrong
  */
 
 router.post("/", postOrder);

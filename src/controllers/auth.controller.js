@@ -30,13 +30,13 @@ const login = async (req, res) => {
     if (!email) {
       return res.status(400).json({
         error: "Missing data",
-        message: "Not email or password prooviided",
+        message: "Not email prooviided",
       });
     }
     if (!password) {
       return res.status(400).json({
         error: "Missing data",
-        message: "Not email or password prooviided",
+        message: "Not password prooviided",
       });
     }
     const result = await AuthServices.login({ email, password });

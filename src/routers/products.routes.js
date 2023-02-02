@@ -21,7 +21,7 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/getProducts'
  *       400:
- *         description: validation error
+ *         description: error
  *         content:
  *           application/json:
  *             schema:
@@ -29,7 +29,7 @@ const router = Router();
  *               properties:
  *                 message:
  *                   type: string
- *                   example: validation error
+ *                   example: something went wrong
  *   post:
  *     security:
  *       - bearerAuth: []
